@@ -4,7 +4,7 @@ import { IoSaveOutline, IoShareSocialOutline } from "react-icons/io5";
 const HeaderContainer = styled.div`
     background-color: #1a1a1a;
     color: white;
-    padding: 5px 32px;
+    padding: 3px 32px;
     height: 8vh;
     display: flex;
     align-items: center;
