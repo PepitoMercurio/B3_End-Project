@@ -1,7 +1,13 @@
 import { PageOrderStyle, PageElement, PageTitle, PageSubtitle, PageButtons, DeleteButton, PlusButton, InPageElement, ElementList } from "./style";
-
+import { useState } from "react";
 
 const PageOrder = () => {
+    const [isExpanded, setIsExpanded] = useState(false);
+
+    const handlePlusClick = () => {
+        setIsExpanded(!isExpanded);
+    };
+
     return (
         <PageOrderStyle>
             <PageElement>
@@ -9,20 +15,30 @@ const PageOrder = () => {
                 <PageTitle>Page1</PageTitle>
 
                 <PageButtons>
-                    <PlusButton />
+                    <p>{isExpanded}</p>
+                    <PlusButton 
+                        onClick={handlePlusClick}
+                        isExpanded={isExpanded}
+                    />
                     <DeleteButton />
                 </PageButtons>
 
             </PageElement>
 
-            <InPageElement>
+            {isExpanded && (
+                <InPageElement
+                    isExpanded={isExpanded}
+                >
 
-                <ElementList>
-                    <PageSubtitle>Elem1</PageSubtitle>
-                    <DeleteButton />
-                </ElementList>
+                    <ElementList
+                        isExpanded={isExpanded}
+                    >
+                        <PageSubtitle>Elem1</PageSubtitle>
+                        <DeleteButton />
+                    </ElementList>
 
-            </InPageElement>
+                </InPageElement>
+            )}
 
         </PageOrderStyle>
     );

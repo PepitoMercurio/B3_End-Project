@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import { MdOutlineDelete } from "react-icons/md";
 import { IoIosArrowDown } from "react-icons/io";
 
@@ -50,14 +50,28 @@ const DeleteButton = styled(MdOutlineDelete)`
 
 const PlusButton = styled(IoIosArrowDown)`
     font-size: 1.4rem;
+    transform: ${(props) => (props.isExpanded ? "rotate(-180deg)" : "rotate(0deg)")};
+    transition: transform 0.3s;
+`;
+
+const SlideAnimation = keyframes`
+  0% {
+    opacity: 0;
+    transform: translateY(-50%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
 `;
 
 const InPageElement = styled.div`
-    display: flex;
-    flex-direction: column;
-    align-items: end;
-    justify-content: center;
-    width: 90%;
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+  justify-content: center;
+  width: 90%;
+  animation: ${SlideAnimation} 0.3s ease-in-out;
 `;
 
 const ElementList= styled.div`

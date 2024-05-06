@@ -1,5 +1,7 @@
 import Header from "../../components/Header";
 import ElementOrder from "../../components/ElementOrder";
+import Editer from "../../components/Editer";
+import Parameters from "../../components/Parameters";
 import { EditPageStyle, EditPageContainer } from "./style";
 
 const EditPage = () => {
@@ -8,6 +10,8 @@ const EditPage = () => {
       <Header />
       <EditPageContainer>
         <ElementOrder />
+        <Editer />
+        <Parameters />
       </EditPageContainer>
     </EditPageStyle>
   );
