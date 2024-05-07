@@ -11,6 +11,7 @@ const EditPageContainer = styled.div`
     flex-wrap: wrap;
     align-items: center;
     height: 100%;
+    position: relative;
 `;
 
 export {
