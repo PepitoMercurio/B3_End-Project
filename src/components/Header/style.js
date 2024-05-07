@@ -1,3 +1,5 @@
+// style.js
+
 import styled from "styled-components";
 import { IoSaveOutline, IoShareSocialOutline } from "react-icons/io5";
 
@@ -8,7 +10,6 @@ const HeaderContainer = styled.div`
     height: 8vh;
     display: flex;
     align-items: center;
-    justify-content: space-between;
 `;
 
 const HeaderLogo = styled.img`
@@ -35,10 +36,16 @@ const ShareButton = styled(IoShareSocialOutline)`
     cursor: pointer;
 `;
 
+const Title = styled.h1`
+    text-align: center;
+    color: #6ac16e;
+`;
+
 export {
     HeaderContainer,
     HeaderLogo,
     HeaderButtonsContainer,
     SaveButton,
-    ShareButton
+    ShareButton,
+    Title
 };
