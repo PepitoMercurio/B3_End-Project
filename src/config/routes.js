@@ -1,10 +1,10 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import Header from "../components/Header";
+import EditPage from "../pages/Edit";
 
 const router = createBrowserRouter([
     {
       path: "/",
-      element: <Header />
+      element: <EditPage />
     },
    
   ]);
