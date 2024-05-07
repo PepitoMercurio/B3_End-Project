@@ -8,4 +8,12 @@ const Line = styled.div`
     padding: 0 5px;
 `;
 
-export { Line };
+const SmallLine = styled.div`
+    width: 70%;
+    height: 1px;
+    background-color: white;
+    border-radius: 100%;
+    padding: 0 5px;
+`;
+
+export { Line, SmallLine };
