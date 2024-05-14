@@ -5,6 +5,7 @@ import { Title } from "../Title";
 import { Line, SmallLine } from "../Line";
 import { MdFormatBold } from "react-icons/md";
 import { MdFormatUnderlined } from "react-icons/md";
+import { MdFormatStrikethrough } from "react-icons/md"; // Ajoutez cette ligne
 import { MdFormatAlignCenter } from "react-icons/md";
 import { MdFormatAlignLeft } from "react-icons/md";
 
@@ -22,7 +23,9 @@ const TextContainer = styled.div`
   margin-top: 20px;
   font-size: ${(props) => props.size}em;
   font-weight: ${(props) => (props.isBold ? "bold" : "normal")};
-  text-decoration: ${(props) => (props.isUnderlined ? "underline" : "none")};
+  text-decoration: ${(props) =>
+    props.isUnderlined ? "underline" : props.isStrikethrough ? "line-through" : "none"
+  }; // Mettez à jour cette ligne
   text-align: ${(props) => (props.isCentered ? "center" : props.isLeft ? "left" : "right")};
 `;
 
@@ -32,6 +35,7 @@ const Parameters = () => {
   const [isUnderlined, setIsUnderlined] = useState(false);
   const [isCentered, setIsCentered] = useState(false);
   const [isLeft, setIsLeft] = useState(false);
+  const [isStrikethrough, setIsStrikethrough] = useState(false); // Ajoutez cette ligne
 
   const handleSizeChange = (event) => {
     setSize(event.target.value);
@@ -53,6 +57,10 @@ const Parameters = () => {
   const handleLeftClick = () => {
     setIsLeft(!isLeft);
     setIsCentered(false);
+  };
+
+  const handleStrikethroughClick = () => { // Ajoutez cette fonction
+    setIsStrikethrough(!isStrikethrough);
   };
 
   return (
@@ -103,12 +111,16 @@ const Parameters = () => {
       <button onClick={handleUnderlinedClick}>
         <MdFormatUnderlined />
       </button>
+      <button onClick={handleStrikethroughClick}> 
+        <MdFormatStrikethrough />
+      </button>
       <TextContainer
         size={size}
         isBold={isBold}
         isUnderlined={isUnderlined}
         isCentered={isCentered}
         isLeft={isLeft}
+        isStrikethrough={isStrikethrough} // Ajoutez cette prop
       >
         
       </TextContainer>
