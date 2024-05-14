@@ -4,7 +4,9 @@ import { ParameterContainer } from "./style";
 import { Title } from "../Title";
 import { Line, SmallLine } from "../Line";
 import { MdFormatBold } from "react-icons/md";
+import { MdFormatUnderlined } from "react-icons/md";
 import { MdFormatAlignCenter } from "react-icons/md";
+import { MdFormatAlignLeft } from "react-icons/md";
 
 const SizeContainer = styled.div`
   display: flex;
@@ -16,10 +18,20 @@ const SizeContainer = styled.div`
   }
 `;
 
+const TextContainer = styled.div`
+  margin-top: 20px;
+  font-size: ${(props) => props.size}em;
+  font-weight: ${(props) => (props.isBold ? "bold" : "normal")};
+  text-decoration: ${(props) => (props.isUnderlined ? "underline" : "none")};
+  text-align: ${(props) => (props.isCentered ? "center" : props.isLeft ? "left" : "right")};
+`;
+
 const Parameters = () => {
   const [size, setSize] = useState(1);
   const [isBold, setIsBold] = useState(false);
+  const [isUnderlined, setIsUnderlined] = useState(false);
   const [isCentered, setIsCentered] = useState(false);
+  const [isLeft, setIsLeft] = useState(false);
 
   const handleSizeChange = (event) => {
     setSize(event.target.value);
@@ -29,8 +41,18 @@ const Parameters = () => {
     setIsBold(!isBold);
   };
 
+  const handleUnderlinedClick = () => {
+    setIsUnderlined(!isUnderlined);
+  };
+
   const handleCenterClick = () => {
     setIsCentered(!isCentered);
+    setIsLeft(false);
+  };
+
+  const handleLeftClick = () => {
+    setIsLeft(!isLeft);
+    setIsCentered(false);
   };
 
   return (
@@ -51,7 +73,7 @@ const Parameters = () => {
         <p>{size}</p>
       </SizeContainer>
       <SizeContainer>
-      <p>{size}</p>
+        <p>{size}</p>
         <p>H</p>
         <input
           type="text"
@@ -61,26 +83,35 @@ const Parameters = () => {
           onChange={handleSizeChange}
           style={{ width: '50px', height: '20px' }}
         />
-              <SmallLine />
-
-
+        <SmallLine />
       </SizeContainer>
-        <p>Alignement</p>
-        <button onClick={handleCenterClick}>
-        
+      <p>Alignement</p>
+      <button onClick={handleLeftClick}>
+        <MdFormatAlignLeft />
+      </button>
+      <button onClick={handleCenterClick}>
         <MdFormatAlignCenter />
-
       </button>
       <SmallLine />
-        <p>Color</p>
+      <p>Color</p>
       <input type="color" value="#ff0000" />
       <SmallLine />
-
-        <p>Decoration</p>
+      <p>Decoration</p>
       <button onClick={handleBoldClick}>
         <MdFormatBold />
       </button>
-    
+      <button onClick={handleUnderlinedClick}>
+        <MdFormatUnderlined />
+      </button>
+      <TextContainer
+        size={size}
+        isBold={isBold}
+        isUnderlined={isUnderlined}
+        isCentered={isCentered}
+        isLeft={isLeft}
+      >
+        
+      </TextContainer>
     </ParameterContainer>
   );
 }
