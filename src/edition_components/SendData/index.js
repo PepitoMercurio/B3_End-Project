@@ -1,19 +1,6 @@
-import { TitleComponent } from "../Title";
 import axios from "axios";
 
-const SendData = () => {
-
-    const data = {
-        id_user : "OKOK",
-        title : "OKOK",
-        share_link : "OKOK",
-        pages : [
-            {
-                components : "TitleComponent"
-            }
-        ]
-    }
-
+const SendData = ({ data }) => {
 
     const handleSendData = () => {
         axios({
@@ -29,7 +16,7 @@ const SendData = () => {
 
     return (
         <div>
-        <button onClick={handleSendData}>Send Data</button>
+            <button onClick={handleSendData}>Send Data</button>
         </div>
     );
 };
