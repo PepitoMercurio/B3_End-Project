@@ -74,6 +74,16 @@ const EditPage = () => {
     }
   }
 
+  const handleDeletePage = (index) => {
+    const updatedData = { ...data };
+    if (updatedData.pages && index >= 0 && index < updatedData.pages.length) {
+      updatedData.pages.splice(index, 1);
+      setData(updatedData);
+    } else {
+      console.error('Error: Cannot delete page. Data structure is not as expected.');
+    }
+  }
+
   if (isLoading) {
     return <div>Loading...</div>;
   }
@@ -86,7 +96,7 @@ const EditPage = () => {
     <EditPageStyle>
       <Header handleSendData={handleSendData} />
       <EditPageContainer>
-        <ElementOrder elements={data.pages} handleCreatePage={handleCreatePage} handleCreateElement={handleCreateElement} handleDeleteElement={handleDeleteElement} />
+        <ElementOrder data={data} handleCreatePage={handleCreatePage} handleDeletePage={handleDeletePage} handleCreateElement={handleCreateElement} handleDeleteElement={handleDeleteElement} />
         {data.pages && data.pages.length > 0 ? (
           <Editer data={data.pages[0]} />
         ) : (

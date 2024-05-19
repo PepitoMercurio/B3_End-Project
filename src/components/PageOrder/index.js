@@ -12,7 +12,7 @@ import {
 import { useState } from "react";
 import AddElement from "../AddElement";
 
-const PageOrder = ({ pageKey, elem, handleCreateElement, handleDeleteElement }) => {
+const PageOrder = ({ title, pageKey, elem, handleDeletePage, handleCreateElement, handleDeleteElement }) => {
     const [isExpanded, setIsExpanded] = useState(false);
 
     console.log("ELEM", elem);
@@ -24,10 +24,10 @@ const PageOrder = ({ pageKey, elem, handleCreateElement, handleDeleteElement }) 
     return (
         <PageOrderStyle>
             <PageElement>
-                <PageTitle>Page1</PageTitle>
+                <PageTitle>{title}</PageTitle>
                 <PageButtons>
                     <PlusButton onClick={handlePlusClick} isExpanded={isExpanded} />
-                    <DeleteButton />
+                    <DeleteButton onClick={() => handleDeletePage(pageKey)}/>
                 </PageButtons>
             </PageElement>
 
