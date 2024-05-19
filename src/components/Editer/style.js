@@ -19,9 +19,25 @@ const BoxStyle = styled.div`
     aspect-ratio: 16 / 9;
     width: 90%;
     border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+`;
+
+const Placement = styled.div`
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    background-color: red;
+    flex: 1;
+    padding: 10px;
+    box-sizing: border-box;
 `;
 
 export {
     EditerStyle,
-    BoxStyle
+    BoxStyle,
+    Placement
 };

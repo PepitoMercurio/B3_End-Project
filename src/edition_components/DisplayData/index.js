@@ -5,7 +5,7 @@ const DisplayData = ({ componentName, params }) => {
 
     if (!ComponentToRender) {
         console.error(`Component ${componentName} does not exist in DataMap`);
-        return null; // or render a fallback component or error message
+        return null;
     }
 
     return (<ComponentToRender {...params} />);

@@ -23,6 +23,19 @@ const EditPage = () => {
       });
   }, []);
 
+
+  const handleSendData = () => {
+    axios({
+      method: 'POST',
+      url: 'http://localhost:3001/projects',
+      data: data
+    }).then((response) => {
+      console.log(response);
+    }).catch((error) => {
+      console.log(error);
+    });
+  }
+
   if (isLoading) {
     return <div>Loading...</div>;
   }
@@ -33,7 +46,7 @@ const EditPage = () => {
 
   return (
     <EditPageStyle>
-      <Header />
+      <Header handleSendData={handleSendData} />
       <EditPageContainer>
         <ElementOrder />
         {data.pages && data.pages.length > 0 ? (

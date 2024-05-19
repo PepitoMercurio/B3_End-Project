@@ -1,7 +1,7 @@
 // style.js
 
 import styled from "styled-components";
-import { IoSaveOutline, IoShareSocialOutline } from "react-icons/io5";
+import { IoSaveOutline, IoShareSocialOutline, IoMoonOutline, IoSunnyOutline } from "react-icons/io5";
 
 const HeaderContainer = styled.div`
     background-color: #1a1a1a;
@@ -10,6 +10,7 @@ const HeaderContainer = styled.div`
     height: 8vh;
     display: flex;
     align-items: center;
+    justify-content: space-between;
 `;
 
 const HeaderLogo = styled.img`
@@ -21,7 +22,7 @@ const HeaderLogo = styled.img`
 const HeaderButtonsContainer = styled.div`
     display: flex;
     justify-content: space-between;
-    width: 4rem;
+    width: 6rem;
 `;
 
 const SaveButton = styled(IoSaveOutline)`
@@ -31,6 +32,18 @@ const SaveButton = styled(IoSaveOutline)`
 `;
 
 const ShareButton = styled(IoShareSocialOutline)`
+    color: white;
+    font-size: 25px;
+    cursor: pointer;
+`;
+
+const MoonButton = styled(IoMoonOutline)`
+    color: white;
+    font-size: 25px;
+    cursor: pointer;
+`;
+
+const SunButton = styled(IoSunnyOutline)`
     color: white;
     font-size: 25px;
     cursor: pointer;
@@ -47,5 +60,7 @@ export {
     HeaderButtonsContainer,
     SaveButton,
     ShareButton,
-    Title
+    Title,
+    MoonButton,
+    SunButton
 };

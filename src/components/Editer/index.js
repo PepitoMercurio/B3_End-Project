@@ -1,19 +1,16 @@
 import SendData from "../../edition_components/SendData";
 import DisplayData from "../../edition_components/DisplayData";
-import { EditerStyle, BoxStyle } from "./style";
-import { Title } from "../Title";
+import { EditerStyle, BoxStyle, Placement } from "./style";
+import { TitleComponent } from "../../edition_components/Title";
 
 
 const Editer = ({ data = [] }) => {
 
-    console.log('DATA', data);
-
-
     return (
         <EditerStyle>
-            <SendData />
             <BoxStyle >
-                <DisplayData componentName={ data.components } params={data.params} />
+                <TitleComponent title={ "Test" } />
+                <Placement />
             </BoxStyle>
         </EditerStyle>
     );

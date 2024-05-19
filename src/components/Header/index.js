@@ -1,16 +1,30 @@
 import { useNavigate } from "react-router-dom";
-import { HeaderContainer, HeaderLogo, HeaderButtonsContainer, SaveButton, ShareButton } from "./style";
+import { HeaderContainer, HeaderLogo, HeaderButtonsContainer, SaveButton, ShareButton, MoonButton, SunButton } from "./style";
 import logo from "../../images/yword.png";
+import React, { useState } from 'react';
 
 
-const Header = () => {
+const Header = ({handleSendData}) => {
     const navigate = useNavigate();
+    const [color, setColor] = useState(localStorage.getItem('theme') || 'light');
+
+    const handleColor = () => {
+        const newColor = color === 'light' ? 'dark' : 'light';
+        setColor(newColor);
+        localStorage.setItem('theme', newColor);
+    }
+
     return (
         <HeaderContainer>
             <HeaderLogo src={logo} alt="logo" onClick={() => navigate("/")} />
             <HeaderButtonsContainer>
-                <SaveButton onClick={() => alert("Saved!")} />
+                <SaveButton onClick={handleSendData} />
                 <ShareButton onClick={() => alert("Shared!")} />
+                {color === 'light' ?
+                    <MoonButton onClick={handleColor} />
+                :
+                    <SunButton onClick={handleColor} />
+                }
             </HeaderButtonsContainer>
         </HeaderContainer>
     );

@@ -45,8 +45,8 @@ const ThemeToggler = ({children}) => {
       
       <div style={{ backgroundColor: theme === 'light' ? lightTheme.body : darkTheme.body }}>
         <ToggleButton themeToggler={themeToggler} currentTheme={theme} />
-       
       </div>
+      
       {children}
      
     </ThemeProvider>
