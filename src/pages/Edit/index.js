@@ -40,25 +40,39 @@ const EditPage = () => {
     });
   }
 
-  const handleCreateElement = () => {
+  const handleCreateElement = (page) => {
     const updatedData = { ...data };
-    if (updatedData.pages && updatedData.pages[0] && updatedData.pages[0].elements && updatedData.pages[0].elements.length < 4) {
-      updatedData.pages[0].elements.push('New Element');
+    if (updatedData.pages && updatedData.pages[page] && updatedData.pages[page].elements && updatedData.pages[page].elements.length < 4) {
+      updatedData.pages[page].elements.push('New Element');
       setData(updatedData);
     } else {
       console.error('Error: Cannot create element. Data structure is not as expected.');
     }
   };
 
-  const handleDeleteElement = (index) => {
+  const handleDeleteElement = (page, index) => {
     const updatedData = { ...data };
-    if (updatedData.pages && updatedData.pages[0] && updatedData.pages[0].elements && index >= 0 && index < updatedData.pages[0].elements.length) {
-      updatedData.pages[0].elements.splice(index, 1);
+    if (updatedData.pages && updatedData.pages[page] && updatedData.pages[page].elements && index >= 0 && index < updatedData.pages[page].elements.length) {
+      updatedData.pages[page].elements.splice(index, 1);
       setData(updatedData);
     } else {
       console.error('Error: Cannot delete element. Data structure is not as expected.');
     }
   };
+
+  const handleCreatePage = () => {
+    const updatedData = { ...data };
+    if (updatedData.pages) {
+      updatedData.pages.push({
+        title: 'New Page',
+        display_title: false,
+        elements: [] 
+      });
+      setData(updatedData);
+    } else {
+      console.error('Error: Cannot create page. Data structure is not as expected.');
+    }
+  }
 
   if (isLoading) {
     return <div>Loading...</div>;
@@ -72,7 +86,7 @@ const EditPage = () => {
     <EditPageStyle>
       <Header handleSendData={handleSendData} />
       <EditPageContainer>
-        <ElementOrder elements={data.pages} handleCreateElement={handleCreateElement} handleDeleteElement={handleDeleteElement} />
+        <ElementOrder elements={data.pages} handleCreatePage={handleCreatePage} handleCreateElement={handleCreateElement} handleDeleteElement={handleDeleteElement} />
         {data.pages && data.pages.length > 0 ? (
           <Editer data={data.pages[0]} />
         ) : (

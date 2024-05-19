@@ -1,13 +1,11 @@
 import { AddElementStyle, AddElementButton } from "./style";
 
-const AddElement = ({e, handleCreateElement }) => {
-    console.log("E",e);
-
+const AddElement = ({ page, handleCreateElement }) => {
     return (
-        <AddElementStyle onClick={handleCreateElement}>
+        <AddElementStyle onClick={() => handleCreateElement(page)}>
             <AddElementButton />
         </AddElementStyle>
-    )
+    );
 };
 
 export default AddElement;

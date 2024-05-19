@@ -4,9 +4,12 @@ import ThemeProvider from "./Theme/theme";
 import React, { useState } from 'react';
 
 function App() {
+  // const [theme, setTheme] = useState(
+  //   localStorage.getItem('theme') || 'light'
+  // );
 
   return (
-    <ThemeProvider >
+    <ThemeProvider>
     <Routes />
     </ThemeProvider>
   
