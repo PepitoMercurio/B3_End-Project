@@ -3,8 +3,9 @@ import { ElementOrderStyle, ElementOrderContainer } from "./style";
 import { Title } from "../Title";
 import { Line } from "../Line";
 import PageOrder from "../PageOrder";
+import AddElement from "../AddElement";
 
-const ElementOrder = ({elements}) => {
+const ElementOrder = ({elements, handleCreateElement, handleDeleteElement }) => {
     const [isDisplayed, setIsDisplayed] = useState(true);
 
     const handleDisplay = () => {
@@ -20,12 +21,13 @@ const ElementOrder = ({elements}) => {
                     <Title>Pages</Title>
                     <Line />
                     {elements.map((element, index) => (
-                        <PageOrder key={index} elem={element.elements}/>
+                        <PageOrder key={index} elem={element.elements} handleCreateElement={handleCreateElement} handleDeleteElement={handleDeleteElement} />
                     ))}
                 </ElementOrderContainer>
             :
                 <p>test</p>
             }
+
         </ElementOrderStyle>
     );
 }

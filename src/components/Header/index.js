@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { HeaderContainer, HeaderLogo, HeaderButtonsContainer, SaveButton, ShareButton, MoonButton, SunButton, AddButton } from "./style";
+import { HeaderContainer, HeaderLogo, HeaderButtonsContainer, SaveButton, ShareButton, MoonButton, SunButton } from "./style";
 import logo from "../../images/yword.png";
 import React, { useState } from 'react';
 import CreateData from "../../edition_components/SendData";
