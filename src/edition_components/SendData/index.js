@@ -1,8 +1,28 @@
 import axios from "axios";
+import { IoMdAddCircleOutline } from "react-icons/io";
+import styled from "styled-components";
 
-const SendData = ({ data }) => {
+const AddButton = styled(IoMdAddCircleOutline)`
+    color: white;
+    font-size: 25px;
+    cursor: pointer;
+`;
 
-    const handleSendData = () => {
+const CreateData = ({ id_user, title }) => {
+
+    const data = {
+        id_user: id_user,
+        title: title,
+        pages: [
+            {
+                title: 'Sans Titre',
+                display_title: false,
+                elements: []
+            }
+        ]
+    };
+
+    const handleCreateData = () => {
         axios({
             method: 'POST',
             url: 'http://localhost:3001/projects',
@@ -15,10 +35,8 @@ const SendData = ({ data }) => {
     }
 
     return (
-        <div>
-            <button onClick={handleSendData}>Send Data</button>
-        </div>
+        <AddButton onClick={handleCreateData}>Send Data</AddButton>
     );
 };
 
-export default SendData;
+export default CreateData;

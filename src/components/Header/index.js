@@ -1,7 +1,8 @@
 import { useNavigate } from "react-router-dom";
-import { HeaderContainer, HeaderLogo, HeaderButtonsContainer, SaveButton, ShareButton, MoonButton, SunButton } from "./style";
+import { HeaderContainer, HeaderLogo, HeaderButtonsContainer, SaveButton, ShareButton, MoonButton, SunButton, AddButton } from "./style";
 import logo from "../../images/yword.png";
 import React, { useState } from 'react';
+import CreateData from "../../edition_components/SendData";
 
 
 const Header = ({handleSendData}) => {
@@ -18,6 +19,7 @@ const Header = ({handleSendData}) => {
         <HeaderContainer>
             <HeaderLogo src={logo} alt="logo" onClick={() => navigate("/")} />
             <HeaderButtonsContainer>
+                <CreateData id_user={"aaa"} title={"aaa"}/>
                 <SaveButton onClick={handleSendData} />
                 <ShareButton onClick={() => alert("Shared!")} />
                 {color === 'light' ?

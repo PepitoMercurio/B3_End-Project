@@ -4,7 +4,7 @@ import { Title } from "../Title";
 import { Line } from "../Line";
 import PageOrder from "../PageOrder";
 
-const ElementOrder = () => {
+const ElementOrder = ({elements}) => {
     const [isDisplayed, setIsDisplayed] = useState(true);
 
     const handleDisplay = () => {
@@ -19,9 +19,9 @@ const ElementOrder = () => {
                 <ElementOrderContainer>
                     <Title>Pages</Title>
                     <Line />
-                    <PageOrder />
-                    <PageOrder />
-                    <PageOrder />
+                    {elements.map((element, index) => (
+                        <PageOrder key={index} elem={element.elements}/>
+                    ))}
                 </ElementOrderContainer>
             :
                 <p>test</p>

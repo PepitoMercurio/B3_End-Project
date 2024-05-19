@@ -22,7 +22,7 @@ const HeaderLogo = styled.img`
 const HeaderButtonsContainer = styled.div`
     display: flex;
     justify-content: space-between;
-    width: 6rem;
+    width: 8rem;
 `;
 
 const SaveButton = styled(IoSaveOutline)`
@@ -62,5 +62,5 @@ export {
     ShareButton,
     Title,
     MoonButton,
-    SunButton
+    SunButton,
 };

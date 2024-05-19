@@ -11,8 +11,12 @@ const EditPage = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
 
+  const path = window.location.pathname;
+  const parts = path.split('/');
+  const id = parts[1];
+
   useEffect(() => {
-    axios.get('http://localhost:3001/projects/66475685b59227a78bdf4e23')
+    axios.get(`http://localhost:3001/projects/${id}`)
       .then((response) => {
         setData(response.data);
         setIsLoading(false);
@@ -26,7 +30,7 @@ const EditPage = () => {
 
   const handleSendData = () => {
     axios({
-      method: 'POST',
+      method: 'PUT',
       url: 'http://localhost:3001/projects',
       data: data
     }).then((response) => {
@@ -48,7 +52,7 @@ const EditPage = () => {
     <EditPageStyle>
       <Header handleSendData={handleSendData} />
       <EditPageContainer>
-        <ElementOrder />
+        <ElementOrder elements={data.pages} />
         {data.pages && data.pages.length > 0 ? (
           <Editer data={data.pages[0]} />
         ) : (

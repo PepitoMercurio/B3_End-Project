@@ -3,7 +3,7 @@ import EditPage from "../pages/Edit";
 
 const router = createBrowserRouter([
     {
-      path: "/",
+      path: "/:id",
       element: <EditPage />
     },
    
