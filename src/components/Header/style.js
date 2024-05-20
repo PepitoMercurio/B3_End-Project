@@ -1,5 +1,3 @@
-// style.js
-
 import styled from "styled-components";
 import { IoSaveOutline, IoShareSocialOutline, IoMoonOutline, IoSunnyOutline } from "react-icons/io5";
 
@@ -54,6 +52,46 @@ const Title = styled.h1`
     color: #6ac16e;
 `;
 
+const BlueSquare = styled.div`
+    position: absolute;
+    top: 70px;  
+    left: 0px;
+    width: 300px;
+    height: 150px;
+    background-color: blue;
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+`;
+
+const RedCircle = styled.div`
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 800px;
+    height: 400px;
+    background-color: red;
+    border-radius: 5%;
+    clip-path: circle(50% at 100% 100%);
+`;
+
+const YellowTriangle = styled.div`
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 0;
+    border-left: 75px solid transparent;
+    border-right: 75px solid transparent;
+    border-top: 150px solid yellow;
+`;
+
+const ContentText = styled.div`
+    font-family: Arial, sans-serif;
+    color: #333;
+    font-size: 16px;
+    line-height: 1.5;
+    margin-top: 20px;
+`;
+
 export {
     HeaderContainer,
     HeaderLogo,
@@ -61,6 +99,13 @@ export {
     SaveButton,
     ShareButton,
     Title,
+<<<<<<< HEAD
     MoonButton,
     SunButton,
+=======
+    BlueSquare,
+    RedCircle,
+    YellowTriangle,
+    ContentText
+>>>>>>> b7e64b4 (Resolve merge conflicts)
 };
