@@ -128,6 +128,7 @@ const Parameters = () => {
           <SmallLine />
         </SizeContainer>
       </AlignContainer>
+      <SmallLine /> {/* Move SmallLine here */}
       <AlignContainer>
         <p>Alignement</p>
         <ButtonContainer>
@@ -177,4 +178,3 @@ const Parameters = () => {
 }
 
 export default Parameters;
-
