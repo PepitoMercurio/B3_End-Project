@@ -3,12 +3,7 @@ import styled from 'styled-components';
 import { ParameterContainer } from "./style";
 import { Title } from "../Title";
 import { Line, SmallLine } from "../Line";
-import { MdFormatBold } from "react-icons/md";
-import { MdFormatUnderlined } from "react-icons/md";
-import { MdFormatStrikethrough } from "react-icons/md";
-import { MdFormatAlignCenter } from "react-icons/md";
-import { MdFormatAlignLeft } from "react-icons/md";
-import { MdFormatAlignRight } from "react-icons/md"; // Ajoutez cette ligne
+import { MdFormatBold, MdFormatUnderlined, MdFormatStrikethrough, MdFormatAlignCenter, MdFormatAlignLeft, MdFormatAlignRight } from "react-icons/md"; // Import multiple icons in a single line
 
 const SizeContainer = styled.div`
   display: flex;
@@ -18,6 +13,33 @@ const SizeContainer = styled.div`
   p {
     margin-right: 6px;
   }
+`;
+
+const ButtonContainer = styled.div`
+  display: flex;
+  gap: 10px; /* Space between buttons */
+  margin-bottom: 10px; /* Space below the button container */
+`;
+
+const AlignContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-bottom: 10px;
+`;
+
+const ColorContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-bottom: 10px;
+`;
+
+const DecorationContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-bottom: 10px;
 `;
 
 const TextContainer = styled.div`
@@ -37,7 +59,7 @@ const Parameters = () => {
   const [isUnderlined, setIsUnderlined] = useState(false);
   const [isCentered, setIsCentered] = useState(false);
   const [isLeft, setIsLeft] = useState(false);
-  const [isRight, setIsRight] = useState(false); // Ajoutez cette ligne
+  const [isRight, setIsRight] = useState(false);
   const [isStrikethrough, setIsStrikethrough] = useState(false);
 
   const handleSizeChange = (event) => {
@@ -78,63 +100,75 @@ const Parameters = () => {
     <ParameterContainer>
       <Title>Design</Title>
       <Line />
-      <label htmlFor="size">Taille:</label>
-      <SizeContainer>
-        <p>W</p>
-        <input
-          type="text"
-          id="sizeW"
-          name="W"
-          value={size}
-          onChange={handleSizeChange}
-          style={{ width: '50px', height: '20px' }}
-        />
-        <p>{size}</p>
-      </SizeContainer>
-      <SizeContainer>
-        <p>{size}</p>
-        <p>H</p>
-        <input
-          type="text"
-          id="sizeH"
-          name="H"
-          value={size}
-          onChange={handleSizeChange}
-          style={{ width: '50px', height: '20px' }}
-        />
-        <SmallLine />
-      </SizeContainer>
-      <p>Alignement</p>
-      <button onClick={handleLeftClick}>
-        <MdFormatAlignLeft />
-      </button>
-      <button onClick={handleCenterClick}>
-        <MdFormatAlignCenter />
-      </button>
-      <button onClick={handleRightClick}>
-        <MdFormatAlignRight />
-      </button>
+      <AlignContainer>
+        <label htmlFor="size">Taille:</label>
+        <SizeContainer>
+          <p>W</p>
+          <input
+            type="text"
+            id="sizeW"
+            name="W"
+            value={size}
+            onChange={handleSizeChange}
+            style={{ width: '50px', height: '20px' }}
+          />
+          <p>{size}</p>
+        </SizeContainer>
+        <SizeContainer>
+          <p>{size}</p>
+          <p>H</p>
+          <input
+            type="text"
+            id="sizeH"
+            name="H"
+            value={size}
+            onChange={handleSizeChange}
+            style={{ width: '50px', height: '20px' }}
+          />
+          <SmallLine />
+        </SizeContainer>
+      </AlignContainer>
+      <AlignContainer>
+        <p>Alignement</p>
+        <ButtonContainer>
+          <button onClick={handleLeftClick}>
+            <MdFormatAlignLeft />
+          </button>
+          <button onClick={handleCenterClick}>
+            <MdFormatAlignCenter />
+          </button>
+          <button onClick={handleRightClick}>
+            <MdFormatAlignRight />
+          </button>
+        </ButtonContainer>
+      </AlignContainer>
       <SmallLine />
-      <p>Color</p>
-      <input type="color" value="#ff0000" />
+      <ColorContainer>
+        <p>Color</p>
+        <input type="color" value="#ff0000" />
+      </ColorContainer>
       <SmallLine />
-      <p>Decoration</p>
-      <button onClick={handleBoldClick}>
-        <MdFormatBold />
-      </button>
-      <button onClick={handleUnderlinedClick}>
-        <MdFormatUnderlined />
-      </button>
-      <button onClick={handleStrikethroughClick}>
-        <MdFormatStrikethrough />
-      </button>
+      <DecorationContainer>
+        <p>Decoration</p>
+        <ButtonContainer>
+          <button onClick={handleBoldClick}>
+            <MdFormatBold />
+          </button>
+          <button onClick={handleUnderlinedClick}>
+            <MdFormatUnderlined />
+          </button>
+          <button onClick={handleStrikethroughClick}>
+            <MdFormatStrikethrough />
+          </button>
+        </ButtonContainer>
+      </DecorationContainer>
       <TextContainer
         size={size}
         isBold={isBold}
         isUnderlined={isUnderlined}
         isCentered={isCentered}
         isLeft={isLeft}
-        isRight={isRight} // Ajoutez cette prop
+        isRight={isRight}
         isStrikethrough={isStrikethrough}
       >
       </TextContainer>
@@ -143,3 +177,4 @@ const Parameters = () => {
 }
 
 export default Parameters;
+
