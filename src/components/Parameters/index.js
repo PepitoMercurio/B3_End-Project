@@ -5,9 +5,10 @@ import { Title } from "../Title";
 import { Line, SmallLine } from "../Line";
 import { MdFormatBold } from "react-icons/md";
 import { MdFormatUnderlined } from "react-icons/md";
-import { MdFormatStrikethrough } from "react-icons/md"; // Ajoutez cette ligne
+import { MdFormatStrikethrough } from "react-icons/md";
 import { MdFormatAlignCenter } from "react-icons/md";
 import { MdFormatAlignLeft } from "react-icons/md";
+import { MdFormatAlignRight } from "react-icons/md"; // Ajoutez cette ligne
 
 const SizeContainer = styled.div`
   display: flex;
@@ -25,8 +26,9 @@ const TextContainer = styled.div`
   font-weight: ${(props) => (props.isBold ? "bold" : "normal")};
   text-decoration: ${(props) =>
     props.isUnderlined ? "underline" : props.isStrikethrough ? "line-through" : "none"
-  }; // Mettez à jour cette ligne
-  text-align: ${(props) => (props.isCentered ? "center" : props.isLeft ? "left" : "right")};
+  };
+  text-align: ${(props) =>
+    props.isCentered ? "center" : props.isLeft ? "left" : "right"};
 `;
 
 const Parameters = () => {
@@ -35,7 +37,8 @@ const Parameters = () => {
   const [isUnderlined, setIsUnderlined] = useState(false);
   const [isCentered, setIsCentered] = useState(false);
   const [isLeft, setIsLeft] = useState(false);
-  const [isStrikethrough, setIsStrikethrough] = useState(false); // Ajoutez cette ligne
+  const [isRight, setIsRight] = useState(false); // Ajoutez cette ligne
+  const [isStrikethrough, setIsStrikethrough] = useState(false);
 
   const handleSizeChange = (event) => {
     setSize(event.target.value);
@@ -52,14 +55,22 @@ const Parameters = () => {
   const handleCenterClick = () => {
     setIsCentered(!isCentered);
     setIsLeft(false);
+    setIsRight(false);
   };
 
   const handleLeftClick = () => {
     setIsLeft(!isLeft);
     setIsCentered(false);
+    setIsRight(false);
   };
 
-  const handleStrikethroughClick = () => { // Ajoutez cette fonction
+  const handleRightClick = () => {
+    setIsRight(!isRight);
+    setIsCentered(false);
+    setIsLeft(false);
+  };
+
+  const handleStrikethroughClick = () => {
     setIsStrikethrough(!isStrikethrough);
   };
 
@@ -100,6 +111,9 @@ const Parameters = () => {
       <button onClick={handleCenterClick}>
         <MdFormatAlignCenter />
       </button>
+      <button onClick={handleRightClick}>
+        <MdFormatAlignRight />
+      </button>
       <SmallLine />
       <p>Color</p>
       <input type="color" value="#ff0000" />
@@ -111,7 +125,7 @@ const Parameters = () => {
       <button onClick={handleUnderlinedClick}>
         <MdFormatUnderlined />
       </button>
-      <button onClick={handleStrikethroughClick}> 
+      <button onClick={handleStrikethroughClick}>
         <MdFormatStrikethrough />
       </button>
       <TextContainer
@@ -120,9 +134,9 @@ const Parameters = () => {
         isUnderlined={isUnderlined}
         isCentered={isCentered}
         isLeft={isLeft}
-        isStrikethrough={isStrikethrough} // Ajoutez cette prop
+        isRight={isRight} // Ajoutez cette prop
+        isStrikethrough={isStrikethrough}
       >
-        
       </TextContainer>
     </ParameterContainer>
   );
