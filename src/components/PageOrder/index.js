@@ -15,8 +15,6 @@ import AddElement from "../AddElement";
 const PageOrder = ({ title, pageKey, elem, handleDeletePage, handleCreateElement, handleDeleteElement }) => {
     const [isExpanded, setIsExpanded] = useState(false);
 
-    console.log("ELEM", elem);
-
     const handlePlusClick = () => {
         setIsExpanded(!isExpanded);
     };
@@ -33,14 +31,19 @@ const PageOrder = ({ title, pageKey, elem, handleDeletePage, handleCreateElement
 
             {isExpanded && (
                 <>
-                    {elem.map((element, index) => (
-                        <InPageElement key={index} isExpanded={isExpanded}>
-                            <ElementList isExpanded={isExpanded}>
-                                <PageSubtitle>{element}</PageSubtitle>
-                                <DeleteButton onClick={() => handleDeleteElement(pageKey, index)} />
-                            </ElementList>
-                        </InPageElement>
-                    ))}
+                    {elem.map((element, index) => {
+                        // Analyser chaque élément de votre tableau elem en tant qu'objet JSON
+                        const parsedElement = JSON.parse(element);
+                        return (
+                            <InPageElement key={index} isExpanded={isExpanded}>
+                                <ElementList isExpanded={isExpanded}>
+                                    {/* Utiliser les propriétés de l'objet JSON */}
+                                    <PageSubtitle>{parsedElement.componentName}</PageSubtitle>
+                                    <DeleteButton onClick={() => handleDeleteElement(pageKey, index)} />
+                                </ElementList>
+                            </InPageElement>
+                        );
+                    })}
                     {elem.length < 4 && (
                         <AddElement page={pageKey} handleCreateElement={handleCreateElement} />
                     )}

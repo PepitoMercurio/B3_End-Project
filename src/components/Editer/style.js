@@ -25,15 +25,19 @@ const BoxStyle = styled.div`
 `;
 
 const Placement = styled.div`
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    background-color: red;
-    flex: 1;
-    padding: 10px;
-    box-sizing: border-box;
+  display: flex;
+  flex-direction: ${props => {
+    if (props.length === 3) return "column";
+    return "row";
+  }};
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+  background-color: red;
+  flex: 1;
+  /* padding: 10px; */
+  box-sizing: border-box;
 `;
 
 export {

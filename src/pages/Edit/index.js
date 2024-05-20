@@ -40,10 +40,10 @@ const EditPage = () => {
     });
   }
 
-  const handleCreateElement = (page) => {
+  const handleCreateElement = (page, toAdd) => {
     const updatedData = { ...data };
     if (updatedData.pages && updatedData.pages[page] && updatedData.pages[page].elements && updatedData.pages[page].elements.length < 4) {
-      updatedData.pages[page].elements.push('New Element');
+      updatedData.pages[page].elements.push(toAdd);
       setData(updatedData);
     } else {
       console.error('Error: Cannot create element. Data structure is not as expected.');
@@ -98,7 +98,7 @@ const EditPage = () => {
       <EditPageContainer>
         <ElementOrder data={data} handleCreatePage={handleCreatePage} handleDeletePage={handleDeletePage} handleCreateElement={handleCreateElement} handleDeleteElement={handleDeleteElement} />
         {data.pages && data.pages.length > 0 ? (
-          <Editer data={data.pages[0]} />
+          <Editer data={data.pages[0].elements} />
         ) : (
           <div>No page data available</div>
         )}
