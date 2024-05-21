@@ -19,14 +19,21 @@ const Viewer = () => {
             setIsLoading(true);
             setError(null);
 
-            try {
-                const response = await axios.get(`http://localhost:3001/projects/${id}`);
+            axios(
+                {
+                    method: 'GET',
+                    url: `http://localhost:3001/projects/${id}`,
+                    headers: {
+                        'Authorization': `Bearer ${localStorage.getItem('token')}`,
+                    },
+                }
+            ).then((response) => {
                 setData(response.data);
-            } catch (error) {
-                setError(`Error fetching page data: ${error.message}`);
-            } finally {
                 setIsLoading(false);
-            }
+            }).catch((error) => {
+                setError('Error fetching page data: ' + error.message);
+                setIsLoading(false);
+            });
         };
 
         if (id) {
