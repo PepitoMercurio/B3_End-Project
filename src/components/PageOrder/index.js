@@ -12,17 +12,18 @@ import {
 import { useState } from "react";
 import AddElement from "../AddElement";
 
-const PageOrder = ({ title, pageKey, elem, handleDeletePage, handleCreateElement, handleDeleteElement }) => {
+const PageOrder = ({ title, pageKey, elem, handleDeletePage, handleCreateElement, handleDeleteElement, handleSelectPage, handleSelectElement }) => {
     const [isExpanded, setIsExpanded] = useState(false);
 
     const handlePlusClick = () => {
+        handleSelectPage(pageKey)
         setIsExpanded(!isExpanded);
     };
 
     return (
         <PageOrderStyle>
             <PageElement>
-                <PageTitle>{title}</PageTitle>
+                <PageTitle onClick={() => handleSelectPage(pageKey)}>{title}</PageTitle>
                 <PageButtons>
                     <PlusButton onClick={handlePlusClick} isExpanded={isExpanded} />
                     <DeleteButton onClick={() => handleDeletePage(pageKey)}/>
@@ -38,7 +39,7 @@ const PageOrder = ({ title, pageKey, elem, handleDeletePage, handleCreateElement
                             <InPageElement key={index} isExpanded={isExpanded}>
                                 <ElementList isExpanded={isExpanded}>
                                     {/* Utiliser les propriétés de l'objet JSON */}
-                                    <PageSubtitle>{parsedElement.componentName}</PageSubtitle>
+                                    <PageSubtitle onClick={() => handleSelectElement(index)}>{parsedElement.componentName}</PageSubtitle>
                                     <DeleteButton onClick={() => handleDeleteElement(pageKey, index)} />
                                 </ElementList>
                             </InPageElement>

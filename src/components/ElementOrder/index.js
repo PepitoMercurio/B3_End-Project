@@ -5,7 +5,7 @@ import {Line} from "../Line";
 import PageOrder from "../PageOrder";
 import AddPage from "../AddPage";
 
-const ElementOrder = ({ data, handleCreatePage, handleDeletePage, handleCreateElement, handleDeleteElement }) => {
+const ElementOrder = ({ data, handleSelectPage, handleSelectElement, handleCreatePage, handleDeletePage, handleCreateElement, handleDeleteElement }) => {
     const [isDisplayed, setIsDisplayed] = useState(true);
 
     const handleDisplay = () => {
@@ -27,6 +27,8 @@ const ElementOrder = ({ data, handleCreatePage, handleDeletePage, handleCreateEl
                             handleDeletePage={handleDeletePage}
                             handleCreateElement={handleCreateElement}
                             handleDeleteElement={handleDeleteElement}
+                            handleSelectPage={handleSelectPage}
+                            handleSelectElement={handleSelectElement}
                         />
                     ))}
                     <AddPage elements={data} handleCreatePage={handleCreatePage} />

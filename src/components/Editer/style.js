@@ -34,7 +34,6 @@ const Placement = styled.div`
   justify-content: space-around;
   align-items: center;
   width: 100%;
-  background-color: red;
   flex: 1;
   /* padding: 10px; */
   box-sizing: border-box;

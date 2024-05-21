@@ -13,6 +13,24 @@ const ParameterContainer = styled.div`
     text-align: left;
 `;
 
+const ParameterElement = styled.div`
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: space-between;
+    width: 85%;
+    padding: 2px 10px;
+    border-radius: 5px;
+    margin: 15px 0;
+`;
+
+const ParameterText = styled.p`
+    font-size: 1rem;
+    text-align: center;
+`;
+
 export {
     ParameterContainer,
+    ParameterElement,
+    ParameterText,
 };

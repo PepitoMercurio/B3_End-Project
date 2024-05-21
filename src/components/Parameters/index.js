@@ -1,180 +1,107 @@
-import React, { useState } from 'react';
-import styled from 'styled-components';
-import { ParameterContainer } from "./style";
-import { Title } from "../Title";
-import { Line, SmallLine } from "../Line";
-import { MdFormatBold, MdFormatUnderlined, MdFormatStrikethrough, MdFormatAlignCenter, MdFormatAlignLeft, MdFormatAlignRight } from "react-icons/md"; // Import multiple icons in a single line
+import React, { useState, useEffect } from 'react';
+import { ParameterContainer, ParameterElement } from './style';
+import { Title } from '../Title';
+import { Line, SmallLine } from '../Line';
+import { MdFormatBold, MdFormatItalic, MdFormatUnderlined, MdFormatStrikethrough, MdFormatAlignCenter, MdFormatAlignLeft, MdFormatAlignRight } from 'react-icons/md';
+import Button from '../Button';
+import Color from '../Color';
+import SrcInput from '../Src';
+import Input from '../Input';
 
-const SizeContainer = styled.div`
-  display: flex;
-  align-items: center;
-  margin-bottom: 6px;
+const Parameters = ({ element, updateParams }) => {
+  const [data, setData] = useState(null);
 
-  p {
-    margin-right: 6px;
+  useEffect(() => {
+    if (element) {
+      try {
+        const parsedData = JSON.parse(element);
+        setData(parsedData);
+        console.log("aaaafcjjedef", data);
+        console.log('Element data:', data);
+      } catch (error) {
+        console.error('Error parsing element data:', error);
+      }
+    }
+  }, [element]);
+
+  const handleParamChange = (param, value) => {
+    if (data) {
+      const updatedData = {
+        ...data,
+        params: {
+          ...data.params,
+          [param]: value,
+        },
+      };
+      setData(updatedData);
+      updateParams(JSON.stringify(updatedData));
+    }
+  };
+
+  if (!data) {
+    return null; // Ou afficher un message de chargement ou une erreur
   }
-`;
-
-const ButtonContainer = styled.div`
-  display: flex;
-  gap: 10px; /* Space between buttons */
-  margin-bottom: 10px; /* Space below the button container */
-`;
-
-const AlignContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  margin-bottom: 10px;
-`;
-
-const ColorContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  margin-bottom: 10px;
-`;
-
-const DecorationContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  margin-bottom: 10px;
-`;
-
-const TextContainer = styled.div`
-  margin-top: 20px;
-  font-size: ${(props) => props.size}em;
-  font-weight: ${(props) => (props.isBold ? "bold" : "normal")};
-  text-decoration: ${(props) =>
-    props.isUnderlined ? "underline" : props.isStrikethrough ? "line-through" : "none"
-  };
-  text-align: ${(props) =>
-    props.isCentered ? "center" : props.isLeft ? "left" : "right"};
-`;
-
-const Parameters = () => {
-  const [size, setSize] = useState(1);
-  const [isBold, setIsBold] = useState(false);
-  const [isUnderlined, setIsUnderlined] = useState(false);
-  const [isCentered, setIsCentered] = useState(false);
-  const [isLeft, setIsLeft] = useState(false);
-  const [isRight, setIsRight] = useState(false);
-  const [isStrikethrough, setIsStrikethrough] = useState(false);
-
-  const handleSizeChange = (event) => {
-    setSize(event.target.value);
-  };
-
-  const handleBoldClick = () => {
-    setIsBold(!isBold);
-  };
-
-  const handleUnderlinedClick = () => {
-    setIsUnderlined(!isUnderlined);
-  };
-
-  const handleCenterClick = () => {
-    setIsCentered(!isCentered);
-    setIsLeft(false);
-    setIsRight(false);
-  };
-
-  const handleLeftClick = () => {
-    setIsLeft(!isLeft);
-    setIsCentered(false);
-    setIsRight(false);
-  };
-
-  const handleRightClick = () => {
-    setIsRight(!isRight);
-    setIsCentered(false);
-    setIsLeft(false);
-  };
-
-  const handleStrikethroughClick = () => {
-    setIsStrikethrough(!isStrikethrough);
-  };
 
   return (
     <ParameterContainer>
       <Title>Design</Title>
       <Line />
-      <AlignContainer>
-        <label htmlFor="size">Taille:</label>
-        <SizeContainer>
-          <p>W</p>
-          <input
-            type="text"
-            id="sizeW"
-            name="W"
-            value={size}
-            onChange={handleSizeChange}
-            style={{ width: '50px', height: '20px' }}
-          />
-          <p>{size}</p>
-        </SizeContainer>
-        <SizeContainer>
-          <p>{size}</p>
-          <p>H</p>
-          <input
-            type="text"
-            id="sizeH"
-            name="H"
-            value={size}
-            onChange={handleSizeChange}
-            style={{ width: '50px', height: '20px' }}
-          />
+      {data.componentName !== 'ImageComponent' ? (
+        <>
+          <ParameterElement>
+            <Input
+              value={data.params.text || ''}
+              onChange={(e) => handleParamChange('text', e.target.value)}
+            />
+          </ParameterElement>
+
           <SmallLine />
-        </SizeContainer>
-      </AlignContainer>
-      <SmallLine /> {/* Move SmallLine here */}
-      <AlignContainer>
-        <p>Alignement</p>
-        <ButtonContainer>
-          <button onClick={handleLeftClick}>
-            <MdFormatAlignLeft />
-          </button>
-          <button onClick={handleCenterClick}>
-            <MdFormatAlignCenter />
-          </button>
-          <button onClick={handleRightClick}>
-            <MdFormatAlignRight />
-          </button>
-        </ButtonContainer>
-      </AlignContainer>
-      <SmallLine />
-      <ColorContainer>
-        <p>Color</p>
-        <input type="color" value="#ff0000" />
-      </ColorContainer>
-      <SmallLine />
-      <DecorationContainer>
-        <p>Decoration</p>
-        <ButtonContainer>
-          <button onClick={handleBoldClick}>
-            <MdFormatBold />
-          </button>
-          <button onClick={handleUnderlinedClick}>
-            <MdFormatUnderlined />
-          </button>
-          <button onClick={handleStrikethroughClick}>
-            <MdFormatStrikethrough />
-          </button>
-        </ButtonContainer>
-      </DecorationContainer>
-      <TextContainer
-        size={size}
-        isBold={isBold}
-        isUnderlined={isUnderlined}
-        isCentered={isCentered}
-        isLeft={isLeft}
-        isRight={isRight}
-        isStrikethrough={isStrikethrough}
-      >
-      </TextContainer>
+
+          <ParameterElement>
+            <Button icon={MdFormatAlignLeft} onClick={() => handleParamChange('align', 'left')} />
+            <Button icon={MdFormatAlignCenter} onClick={() => handleParamChange('align', 'center')} />
+            <Button icon={MdFormatAlignRight} onClick={() => handleParamChange('align', 'right')} />
+          </ParameterElement>
+
+          <SmallLine />
+
+          <ParameterElement>
+            <Color
+              color={data.params.color || '#000000'}
+              onChange={(color) => handleParamChange('color', color)}
+            />
+          </ParameterElement>
+
+          <SmallLine />
+
+          <ParameterElement>
+            <Button icon={MdFormatBold} onClick={() => handleParamChange('bold', !data.params.bold)} />
+            <Button icon={MdFormatUnderlined} onClick={() => handleParamChange('underline', !data.params.underline)} />
+            <Button icon={MdFormatStrikethrough} onClick={() => handleParamChange('strikethrough', !data.params.strikethrough)} />
+            <Button icon={MdFormatItalic} onClick={() => handleParamChange('italic', !data.params.italic)} />
+          </ParameterElement>
+        </>
+      ) : (
+        <>
+          <ParameterElement>
+            <SrcInput
+              value={data.params.src || ''}
+              onChange={(e) => handleParamChange('src', e.target.value)}
+              placeholder="Image URL"
+            />
+          </ParameterElement>
+
+          <ParameterElement>
+            <SrcInput
+              value={data.params.alt || ''}
+              onChange={(e) => handleParamChange('alt', e.target.value)}
+              placeholder="Image alt text"
+            />
+          </ParameterElement>
+        </>
+      )}
     </ParameterContainer>
   );
-}
+};
 
 export default Parameters;

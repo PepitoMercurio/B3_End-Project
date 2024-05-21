@@ -8,15 +8,30 @@ const AddElement = ({ page, handleCreateElement }) => {
         setIsOptionsVisible(!isOptionsVisible);
     };
 
-    const handleOptionClick = (option) => {
+    const handleOptionClick = (option, params) => {
         const data = {
             componentName: option,
-            params: {},
+            params: params,
         };
         const toAdd = JSON.stringify(data);
         handleCreateElement(page, toAdd);
         setIsOptionsVisible(false);
     };
+
+    const paramText = {
+        text : "Texte",
+        align : "left",
+        color : "#000000",
+        bold : false,
+        italic : false,
+        underline : false,
+        strikethrough : false,
+    }
+
+    const paramImage = {
+        src : "https://via.placeholder.com/150",
+        alt : "Image",
+    }
 
     return (
         <div>
@@ -25,9 +40,8 @@ const AddElement = ({ page, handleCreateElement }) => {
             </AddElementStyle>
             {isOptionsVisible ? (
                 <OptionsList>
-                    <OptionItem onClick={() => handleOptionClick('TextComponent')}>Texte</OptionItem>
-                    <OptionItem onClick={() => handleOptionClick('ImageComponent')}>Image</OptionItem>
-                    <OptionItem onClick={() => handleOptionClick('option3')}>Option 3</OptionItem>
+                    <OptionItem onClick={() => handleOptionClick('TextComponent', paramText)}>Texte</OptionItem>
+                    <OptionItem onClick={() => handleOptionClick('ImageComponent', paramImage)}>Image</OptionItem>
                 </OptionsList>
             ) : null}
         </div>

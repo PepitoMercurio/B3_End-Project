@@ -8,7 +8,6 @@ const PageOrderStyle = styled.div`
     align-items: end;
     justify-content: center;
     width: 90%;
-    cursor: pointer;
 `;
 
 const PageElement = styled.div`
@@ -28,6 +27,7 @@ const PageElement = styled.div`
 
 const PageTitle = styled.p`
     font-size: 1.1rem;
+    cursor: pointer;
 `;
 
 const PageSubtitle = styled.p`

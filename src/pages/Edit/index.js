@@ -11,6 +11,9 @@ const EditPage = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
 
+  const [selectedPage, setSelectedPage] = useState(0);
+  const [selectedElement, setSelectedElement] = useState(0);
+
   const path = window.location.pathname;
   const parts = path.split('/');
   const id = parts[1];
@@ -27,6 +30,14 @@ const EditPage = () => {
       });
   }, []);
 
+  const handleSelectElement = (index) => {
+    setSelectedElement(index);
+  }
+
+  const handleSelectPage = (index) => {
+    setSelectedElement(0);
+    setSelectedPage(index);
+  };
 
   const handleSendData = () => {
     axios({
@@ -75,6 +86,7 @@ const EditPage = () => {
   }
 
   const handleDeletePage = (index) => {
+    handleSelectPage(0);
     const updatedData = { ...data };
     if (updatedData.pages && index >= 0 && index < updatedData.pages.length) {
       updatedData.pages.splice(index, 1);
@@ -83,6 +95,16 @@ const EditPage = () => {
       console.error('Error: Cannot delete page. Data structure is not as expected.');
     }
   }
+
+  const updateParams = (params) => {
+    const updatedData = { ...data };
+    if (updatedData.pages && updatedData.pages[selectedPage] && updatedData.pages[selectedPage].elements && selectedElement >= 0 && selectedElement < updatedData.pages[selectedPage].elements.length) {
+      updatedData.pages[selectedPage].elements[selectedElement] = params;
+      setData(updatedData);
+    } else {
+      console.error('Error: Cannot update element. Data structure is not as expected.');
+    }
+  };
 
   if (isLoading) {
     return <div>Loading...</div>;
@@ -96,13 +118,13 @@ const EditPage = () => {
     <EditPageStyle>
       <Header handleSendData={handleSendData} />
       <EditPageContainer>
-        <ElementOrder data={data} handleCreatePage={handleCreatePage} handleDeletePage={handleDeletePage} handleCreateElement={handleCreateElement} handleDeleteElement={handleDeleteElement} />
+        <ElementOrder data={data} handleSelectPage={handleSelectPage} handleSelectElement={handleSelectElement} handleCreatePage={handleCreatePage} handleDeletePage={handleDeletePage} handleCreateElement={handleCreateElement} handleDeleteElement={handleDeleteElement} />
         {data.pages && data.pages.length > 0 ? (
-          <Editer data={data.pages[0].elements} />
+          <Editer data={data.pages[selectedPage].elements} />
         ) : (
           <div>No page data available</div>
         )}
-        <Parameters />
+        <Parameters element={data.pages[selectedPage].elements[selectedElement]} updateParams={updateParams} />
       </EditPageContainer>
     </EditPageStyle>
   );

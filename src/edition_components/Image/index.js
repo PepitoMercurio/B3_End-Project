@@ -11,13 +11,12 @@ const ImageDiv = styled.div`
         if (props.length <= 2) return "100%";
         return "40%";
     }};
-    background-color: yellow;
 `;
 
 const Image = styled.img`
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain;
     position: absolute;
     top: 0;
     left: 0;
