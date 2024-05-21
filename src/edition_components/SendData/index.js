@@ -8,21 +8,26 @@ const AddButton = styled(IoMdAddCircleOutline)`
     cursor: pointer;
 `;
 
-const CreateData = ({ id_user, title }) => {
-
-    const data = {
-        id_user: id_user,
-        title: title,
-        pages: [
-            {
-                title: 'Sans Titre',
-                display_title: false,
-                elements: []
-            }
-        ]
-    };
-
+const CreateData = ({ id_user }) => {
     const handleCreateData = () => {
+        const title = prompt("Please enter a title:");
+        if (!title) {
+            alert("Title is required to create data.");
+            return;
+        }
+
+        const data = {
+            id_user: id_user,
+            title: title,
+            pages: [
+                {
+                    title: 'Sans Titre',
+                    display_title: false,
+                    elements: []
+                }
+            ]
+        };
+
         axios({
             method: 'POST',
             url: 'http://localhost:3001/projects',
@@ -35,7 +40,7 @@ const CreateData = ({ id_user, title }) => {
     }
 
     return (
-        <AddButton onClick={handleCreateData}>Send Data</AddButton>
+        <AddButton onClick={handleCreateData} />
     );
 };
 

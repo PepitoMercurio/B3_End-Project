@@ -10,12 +10,8 @@ const TitleComponentStyle = styled.h1`
     margin-block-end: 8px;
 `;
 
-const TitleComponent = () => {
-    return (
-        <TitleComponentStyle>
-            Title Component
-        </TitleComponentStyle>
-    );
+const TitleComponent = ({title, display_title}) => {
+    return display_title && <TitleComponentStyle>{title}</TitleComponentStyle>;
 }
 
 export {

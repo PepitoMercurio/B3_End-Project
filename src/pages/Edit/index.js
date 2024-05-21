@@ -16,7 +16,7 @@ const EditPage = () => {
 
   const path = window.location.pathname;
   const parts = path.split('/');
-  const id = parts[1];
+  const id = parts[2];
 
   useEffect(() => {
     axios.get(`http://localhost:3001/projects/${id}`)
@@ -85,6 +85,17 @@ const EditPage = () => {
     }
   }
 
+  const handleUpdatePage = (index, key, value) => {
+    const updatedData = { ...data };
+    if (updatedData.pages && index >= 0 && index < updatedData.pages.length) {
+      updatedData.pages[index] = { ...updatedData.pages[index], [key]: value };
+      setData(updatedData);
+    } else {
+      console.error('Error: Cannot update page. Data structure is not as expected.');
+    }
+  };
+  
+
   const handleDeletePage = (index) => {
     handleSelectPage(0);
     const updatedData = { ...data };
@@ -116,15 +127,15 @@ const EditPage = () => {
 
   return (
     <EditPageStyle>
-      <Header handleSendData={handleSendData} />
+      <Header handleSendData={handleSendData} isEdit={true} />
       <EditPageContainer>
         <ElementOrder data={data} handleSelectPage={handleSelectPage} handleSelectElement={handleSelectElement} handleCreatePage={handleCreatePage} handleDeletePage={handleDeletePage} handleCreateElement={handleCreateElement} handleDeleteElement={handleDeleteElement} />
         {data.pages && data.pages.length > 0 ? (
-          <Editer data={data.pages[selectedPage].elements} />
+          <Editer data={data.pages[selectedPage].elements} title={data.pages[selectedPage].title} display_title={data.pages[selectedPage].display_title} />
         ) : (
           <div>No page data available</div>
         )}
-        <Parameters element={data.pages[selectedPage].elements[selectedElement]} updateParams={updateParams} />
+        <Parameters element={data.pages[selectedPage].elements[selectedElement]} updateParams={updateParams} selectedPage={selectedPage} handleUpdatePage={handleUpdatePage} page={data.pages[selectedPage]} />
       </EditPageContainer>
     </EditPageStyle>
   );

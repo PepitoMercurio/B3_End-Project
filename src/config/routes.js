@@ -1,15 +1,26 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import EditPage from "../pages/Edit";
-import Header from "../components/Header";
+import Login from "../pages/Login";
+import Viewer from "../pages/Viewer";
+import Home from "../pages/Home";
+import ProtectedRoutes from "./privateroute";
 
 const router = createBrowserRouter([
     {
       path: "/",
-      element: <Header />
+      element: <Login />
+    },
+    {
+      path: "/home",
+      element: <ProtectedRoutes component={Home} />
     },
     {
       path: "/:id",
-      element: <EditPage />
+      element: <ProtectedRoutes component={Viewer} />
+    },
+    {
+      path: "/edit/:id",
+      element: <ProtectedRoutes component={EditPage} />
     },
    
   ]);

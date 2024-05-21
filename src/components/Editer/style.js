@@ -6,7 +6,7 @@ const EditerStyle = styled.div`
     align-items: center;
     justify-content: center;
     height: 100%;
-    width: 54vw;
+    width: ${props => props.width};
     background-color: #4F4F4F;
     padding: 5px 32px;
     flex-grow: 1;

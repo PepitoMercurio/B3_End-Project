@@ -29,8 +29,25 @@ const ParameterText = styled.p`
     text-align: center;
 `;
 
+const PageTitle = styled.input`
+    font-size: 1rem;
+    text-align: center;
+    width: 85%;
+    margin: 10px 0;
+    padding: 5px;
+    border-radius: 5px;
+`;
+
+const Checkbox = styled.input`
+    width: 20px;
+    height: 20px;
+    margin: 5px 0 10px 0;
+`;
+
 export {
     ParameterContainer,
     ParameterElement,
     ParameterText,
+    PageTitle,
+    Checkbox
 };

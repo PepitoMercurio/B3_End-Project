@@ -1,11 +1,21 @@
 import styled from "styled-components";
-import { IoSaveOutline, IoShareSocialOutline, IoMoonOutline, IoSunnyOutline } from "react-icons/io5";
+import { IoSaveOutline, IoShareSocialOutline, IoMoonOutline, IoSunnyOutline, IoLogOutOutline } from "react-icons/io5";
+
+const HeaderStyle = styled.div`
+    display: flex;
+    justify-content: center;
+    width: 100vw;
+    height: 8vh;
+    background-color: #1a1a1a;
+    color: white;
+`;
 
 const HeaderContainer = styled.div`
     background-color: #1a1a1a;
     color: white;
     padding: 3px 32px;
     height: 8vh;
+    width: 95%;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -52,7 +62,14 @@ const Title = styled.h1`
     color: #6ac16e;
 `;
 
+const LogoutButton = styled(IoLogOutOutline)`
+    color: white;
+    font-size: 25px;
+    cursor: pointer;
+`;
+
 export {
+    HeaderStyle,
     HeaderContainer,
     HeaderLogo,
     HeaderButtonsContainer,
@@ -61,5 +78,5 @@ export {
     Title,
     MoonButton,
     SunButton,
-
+    LogoutButton
 };

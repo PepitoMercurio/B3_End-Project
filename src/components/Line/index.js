@@ -16,4 +16,27 @@ const SmallLine = styled.div`
     padding: 0 5px;
 `;
 
-export { Line, SmallLine };
+const VLine = styled.div`
+    width: 2px;
+    height: 80%;
+    background-color: white;
+
+    padding: 5px 0;
+`;
+
+const VLineBox = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+`;
+
+const VerticalLine = () => {
+    return (
+        <VLineBox>
+            <VLine />
+        </VLineBox>
+    );
+}
+
+export { Line, SmallLine, VerticalLine };

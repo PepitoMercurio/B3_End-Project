@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 const Text = styled.p`
-    font-size: 16px;
+    font-size: 32px;
     color: ${props => props.color || "black"};
     font-weight: ${props => props.bold ? "bold" : "normal"};
     text-decoration: ${props => {

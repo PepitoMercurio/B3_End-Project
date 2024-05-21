@@ -5,14 +5,14 @@ import { TitleComponent } from "../../edition_components/Title";
 import TextComponent from "../../edition_components/Text";
 
 
-const Editer = ({ data = [] }) => {
+const Editer = ({ data = [], width="54vw", title="Nouveau", display_title=false  }) => {
 
     console.log("DATTTAA", data);
 
     return (
-        <EditerStyle>
+        <EditerStyle width={width}>
             <BoxStyle >
-                <TitleComponent title={ "Test" } />
+                <TitleComponent title={ title } display_title={display_title} />
                 <Placement length={data.length}>
                 {data.map((element, index) => {
                     // Analyser chaque élément de votre tableau data en tant qu'objet JSON

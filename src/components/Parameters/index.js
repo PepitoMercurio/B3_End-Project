@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { ParameterContainer, ParameterElement } from './style';
+import { ParameterContainer, ParameterElement, PageTitle, Checkbox } from './style';
 import { Title } from '../Title';
 import { Line, SmallLine } from '../Line';
 import { MdFormatBold, MdFormatItalic, MdFormatUnderlined, MdFormatStrikethrough, MdFormatAlignCenter, MdFormatAlignLeft, MdFormatAlignRight } from 'react-icons/md';
@@ -8,7 +8,7 @@ import Color from '../Color';
 import SrcInput from '../Src';
 import Input from '../Input';
 
-const Parameters = ({ element, updateParams }) => {
+const Parameters = ({ element, updateParams, selectedPage, handleUpdatePage, page }) => {
   const [data, setData] = useState(null);
 
   useEffect(() => {
@@ -46,6 +46,23 @@ const Parameters = ({ element, updateParams }) => {
     <ParameterContainer>
       <Title>Design</Title>
       <Line />
+      <PageTitle
+        placeholder="Title"
+        name="title"
+        value={page.title || ''}
+        onChange={(e) => handleUpdatePage(selectedPage, 'title', e.target.value)}
+      />
+
+      <Checkbox
+        type="checkbox"
+        name="display_title"
+        value={page.display_title || false}
+        checked={page.display_title || false}
+        onChange={(e) => handleUpdatePage(selectedPage, 'display_title', e.target.checked)}
+      />
+
+      <SmallLine />
+
       {data.componentName !== 'ImageComponent' ? (
         <>
           <ParameterElement>
