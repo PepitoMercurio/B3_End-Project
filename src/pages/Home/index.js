@@ -12,8 +12,8 @@ const Home = () => {
         method: 'GET',
         url: 'http://localhost:3001/projects',
         headers: {
-            'Authorization': localStorage.getItem('token')
-        }
+            'Authorization': `Bearer ${localStorage.getItem('token')}`,
+        },
     }).then((response) => {
         setProjects(response.data);
     }).catch((error) => {

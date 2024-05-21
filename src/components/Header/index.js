@@ -15,6 +15,11 @@ const Header = ({handleSendData, isEdit=false}) => {
         localStorage.setItem('theme', newColor);
     }
 
+    const handleLogout = () => {
+        localStorage.removeItem('token');
+        navigate('/');
+    }
+
     return (
         <HeaderStyle>
             <HeaderContainer>
@@ -23,7 +28,7 @@ const Header = ({handleSendData, isEdit=false}) => {
                     {localStorage.getItem('token') && <CreateData id_user={"aaa"} title={"aaa"}/>}
                     {isEdit && <SaveButton onClick={handleSendData} />}
                     {isEdit && <ShareButton onClick={() => alert("Shared!")} />}
-                    {localStorage.getItem('token') && <LogoutButton onClick={() => localStorage.removeItem('token')} />}
+                    {localStorage.getItem('token') && <LogoutButton onClick={handleLogout} />}
                     {/* {color === 'light' ?
                         <MoonButton onClick={handleColor} />
                     :

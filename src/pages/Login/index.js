@@ -40,7 +40,7 @@ const Login = () => {
         axios({
             method: 'POST',
             url: 'http://localhost:3001/login',
-            data: login
+            data: login,
         }).then((response) => {
             setLogin({
                 email: '',

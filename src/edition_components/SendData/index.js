@@ -31,7 +31,10 @@ const CreateData = ({ id_user }) => {
         axios({
             method: 'POST',
             url: 'http://localhost:3001/projects',
-            data: data
+            data: data,
+            headers: {
+                'Authorization': `Bearer ${localStorage.getItem('token')}`,
+            },
         }).then((response) => {
             console.log(response);
         }).catch((error) => {

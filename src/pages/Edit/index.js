@@ -43,7 +43,10 @@ const EditPage = () => {
     axios({
       method: 'PUT',
       url: `http://localhost:3001/projects/${id}`,
-      data: data
+      data: data,
+      headers: {
+        'Authorization': `Bearer ${localStorage.getItem('token')}`,
+      },
     }).then((response) => {
       console.log(response);
     }).catch((error) => {
