@@ -24,6 +24,7 @@ const ElementOrder = ({ data, handleSelectPage, handleSelectElement, handleCreat
                             title={element.title}
                             pageKey={index}
                             elem={element.elements}
+                            length={data.pages.length}
                             handleDeletePage={handleDeletePage}
                             handleCreateElement={handleCreateElement}
                             handleDeleteElement={handleDeleteElement}
